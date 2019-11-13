@@ -44,18 +44,23 @@ class User {
     let msg = new Message (receiver, content)
     receiver.inbox.push(msg)
     return  `Your message to ${receiver.name} has been sent!`
+
   }
 
   readMessage(i) {
+    this.inbox[i].seen = true
     return this.inbox[i].content
   }
+
+
+
 }
 
 class Message {
   constructor(receiver, content){
     this.receiver = receiver
     this.content = content
-
+    this.seen = false
   }
 }
 
