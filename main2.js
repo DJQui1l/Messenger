@@ -37,10 +37,12 @@ class User {
   constructor(name, inbox) {
     this.name = name
     this.inbox = []
+    this.blockedUsers = []
     //each user has a new name and inbox
   }
 
   sendMessages(receiver, content){
+    if (receiver.blockedUsers.includes(this)) return 'Your message count not be sent!'
     let msg = new Message (receiver, content)
     receiver.inbox.push(msg)
     return  `Your message to ${receiver.name} has been sent!`
@@ -66,14 +68,14 @@ class User {
     // for loop not the best way to do this.
   }
   viewRead() {
-    let unread = []
+    let read = []
     for (let msg of this.inbox){
       if (msg.seen === true) {
-        unread.push(msg)
+        read.push(msg)
         console.log(msg.content)
       }
     }
-    return unread
+    return read
     // for loop not the best way to do this.
   }
 
@@ -92,8 +94,12 @@ class User {
   return msgRead
 }
 
-  /////////////////////////
+block(user){
+  this.blockedUsers.push(user)
+  }
 }
+  /////////////////////////
+
 
 class Message {
   constructor(receiver, content){
@@ -107,3 +113,5 @@ class Message {
 
 let user1 = new User('Michael')
 let user2 = new User('Ryan')
+let user3 = new User('John')
+let user4 = new User('David')
