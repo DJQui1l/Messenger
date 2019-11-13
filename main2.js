@@ -37,23 +37,22 @@ class User {
   constructor(name, inbox) {
     this.name = name
     this.inbox = []
-
+    //each user has a new name and inbox
   }
 
   sendMessages(receiver, content){
     let msg = new Message (receiver, content)
     receiver.inbox.push(msg)
     return  `Your message to ${receiver.name} has been sent!`
-
+    //user chooses what user to send the message to and gives you feed back if the message has been sent.
   }
 
   readMessage(i) {
     this.inbox[i].seen = true
+    this.inbox[i].seenAt = new Date()
     return this.inbox[i].content
+    //if the message has been read & seen, become 'true', give date seen, and return those variables to user's inbox
   }
-
-
-
 }
 
 class Message {
@@ -61,7 +60,9 @@ class Message {
     this.receiver = receiver
     this.content = content
     this.seen = false
+    this.seenAt = null
   }
+  //documents the receiver and the content of the message being sent, and tracks if the receiver user has seen it,read it, and at what time it has been seen.
 }
 
 let user1 = new User('Michael')
