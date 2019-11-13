@@ -32,6 +32,24 @@ let msg2 = new Message('This is the second message')
 
 //user.inbox --> that person's messages
 // user.sendMessage('Ryan', 'hello')
+const Conversations = []
+
+class Conversation {
+  constructor() {
+    this.id = Conversations.length + 1
+    this.messages = []
+    this.users = []
+    Conversations.push(this)
+  }
+
+  add(user) {
+    this.users.push(user)
+  }
+
+
+
+}
+
 
 class User {
   constructor(name, inbox) {
@@ -41,10 +59,10 @@ class User {
     //each user has a new name and inbox
   }
 
-  sendMessages(receiver, content){
-    if (receiver.blockedUsers.includes(this)) return 'Your message count not be sent!'
-    let msg = new Message (receiver, content)
-    receiver.inbox.push(msg)
+  sendMessages(convo, content){
+    if (convo.blockedUsers.includes(this)) return 'Your message count not be sent!'
+    let msg = new Message (convo, content)
+    convo.messages.push(msg)
     return  `Your message to ${receiver.name} has been sent!`
     //user chooses what user to send the message to and gives you feed back if the message has been sent.
   }
@@ -102,8 +120,8 @@ block(user){
 
 
 class Message {
-  constructor(receiver, content){
-    this.receiver = receiver
+  constructor(content){
+    this.receiver = convo
     this.content = content
     this.seen = false
     this.seenAt = null
