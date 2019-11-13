@@ -53,6 +53,46 @@ class User {
     return this.inbox[i].content
     //if the message has been read & seen, become 'true', give date seen, and return those variables to user's inbox
   }
+
+  viewUnread() {
+    let unread = []
+    for (let msg of this.inbox){
+      if (msg.seen === false) {
+        unread.push(msg)
+        console.log(msg.content)
+      }
+    }
+    return unread
+    // for loop not the best way to do this.
+  }
+  viewRead() {
+    let unread = []
+    for (let msg of this.inbox){
+      if (msg.seen === true) {
+        unread.push(msg)
+        console.log(msg.content)
+      }
+    }
+    return unread
+    // for loop not the best way to do this.
+  }
+
+
+  /////////////////////////
+  readAll() {
+    let msgRead = []
+    for (let msg of this.inbox){
+      if (msg.seen === false) {
+        msgRead.push(msgRead)
+        msg.seen = true
+
+        console.log(msg.content)
+      }
+  }
+  return msgRead
+}
+
+  /////////////////////////
 }
 
 class Message {
