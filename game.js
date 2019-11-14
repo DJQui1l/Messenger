@@ -7,6 +7,7 @@ class Unit {
     this.job = "Squire"
     this.alive = true
   }
+  
   attack(target) {
     if (!target.alive) return `${target.name} has already fallen!`
     target.hp -= this.atk
@@ -55,7 +56,16 @@ class Mage extends Unit {
   }
 }
 
+
 let knight = new Knight('Michael')
 let squire = new Squire('Jonny')
 let mage = new Mage('Weevil')
-////////// How do we change jobs? ////////////
+
+
+
+// let ATKButton = document.getElementById('atkBtn')
+//
+// ATKButton.addEventListener('click', function() {
+//     console.log(mage.castSpell(knight))
+//     console.log('Knight has',knight.hp,'hp left')
+//   })
