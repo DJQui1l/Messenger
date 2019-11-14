@@ -6,8 +6,25 @@ class Unit {
     this.mag = 5
     this.job = "Squire"
     this.alive = true
+    this.equipment = {
+      rHand: null,
+      lHand: null,
+      helmet: null,
+      armor: null,
+      accessory: null
+    }
+     // these are properties
+    //make equipment an object and in that object have different types of equipments
   }
-  
+
+  equipItem(item) {
+    if (item.type != 'hand') {
+      this.equipment[item.type] = item
+
+    }
+    return `${item.name} has been equipped!`
+  }
+
   attack(target) {
     if (!target.alive) return `${target.name} has already fallen!`
     target.hp -= this.atk
